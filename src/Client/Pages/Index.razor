@@ -1,0 +1,26 @@
+﻿@page "/"
+@inject DeckOfCards.Client.Services.AppData AppData
+@inject HttpClient Http
+
+<h1>Deck of Cards</h1>
+
+<p>
+    You can use this app to view, shuffle and deal a standard deck of cards.
+    You can't add players or shuffle the cards once dealing has started!
+</p>
+
+<div class="btn-group" role="group" aria-label="Actions">
+    <button class="btn btn-primary" @onclick="Reset">Reset</button>
+    <button class="btn btn-primary" disabled="@AppData.InProgress" @onclick="Shuffle">Shuffle</button>
+    <button class="btn btn-primary" disabled="@AppData.InProgress" @onclick="AddPlayer">Add Player</button>
+    <button class="btn btn-primary" @onclick="Deal">Deal</button>
+</div>
+
+<ul class="list-group">
+    @foreach (DeckOfCards.Shared.Player player in AppData.Players)
+    {
+        <li class="list-group-item">
+            <Player player="@player"></Player>
+        </li>
+    }
+</ul>

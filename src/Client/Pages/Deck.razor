@@ -1,0 +1,18 @@
+﻿@page "/Deck"
+@using DeckOfCards.Shared
+@inject DeckOfCards.Client.Services.AppData AppData
+
+@if (AppData.Deck == null)
+{
+    <p><em>Loading...</em></p>
+}
+else if (AppData.Deck.Count > 0)
+{
+    <p>The following cards remain in the deck.</p>
+
+    <Cards cards="@AppData.Deck"></Cards>
+}
+else
+{
+    <p>The deck is now empty.</p>
+}
